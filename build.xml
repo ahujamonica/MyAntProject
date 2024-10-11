@@ -1,23 +1,30 @@
-<project name="HelloWorld" default="build-and-run">
+<project name="MyAntProject" default="build-and-run" basedir=".">
 
-    <echo message="Welcome to HelloWorld project" />
-
-    <target name="compile">
-        <javac srcdir="src" destdir="build"/>
+    <!-- Define the directory structure -->
+    <property name="src.dir" value="src"/>
+    <property name="build.dir" value="build"/>
+    
+    <!-- Create build directory -->
+    <target name="init">
+        <mkdir dir="${build.dir}"/>  <!-- This line creates the build directory -->
     </target>
 
-    <target name="run" depends="compile">
-        <java classname="HelloWorld" fork="true" />
+    <!-- Compile Java files -->
+    <target name="compile" depends="init">
+        <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false">
+            <include name="**/*.java"/>
+        </javac>
     </target>
 
-    <target name="build-and-run" depends="compile, run">
-        <echo message="Build and run completed." />
+    <!-- Run the compiled Java program -->
+    <target name="run-java" depends="compile">
+        <java classname="helloworld" fork="true">
+            <classpath path="${build.dir}"/>
+        </java>
     </target>
 
-    <target name="clean">
-        <delete dir="build"/>
+    <!-- Build and Run -->
+    <target name="build-and-run" depends="run-java">
+        <echo message="helloworld.java executed successfully."/>
     </target>
-
-    <echo message="Goodbye from HelloWorld project" />
 </project>
-
