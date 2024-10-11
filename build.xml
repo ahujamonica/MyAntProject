@@ -1,33 +1,17 @@
-<project name="banking" default="savings">
-    <echo message="welcome to banking" />
-
-    <target name="savings">
-        <echo message="welcome to savings section" />
-    </target>
-
-    <target name="loans">
-        <echo message="welcome to loans section" />
-    </target>
-
-    <target name="creditcard">
-        <echo message="welcome to credit card" />
-    </target>
+<project name="HelloWorld" default="run">
+    <echo message="Welcome to HelloWorld project" />
 
     <target name="compile">
-        <!-- Example for compiling source files -->
         <javac srcdir="src" destdir="build"/>
     </target>
 
-    <target name="test">
-        <!-- Example for running tests -->
-        <echo message="Running tests..." />
+    <target name="run" depends="compile">
+        <java classname="HelloWorld" fork="true" />
     </target>
 
-    <target name="dist">
-        <!-- Example for creating distribution -->
-        <echo message="Creating distribution..." />
+    <target name="clean">
+        <delete dir="build"/>
     </target>
 
-    <echo message="welcome to banking end" />
+    <echo message="Goodbye from HelloWorld project" />
 </project>
-
