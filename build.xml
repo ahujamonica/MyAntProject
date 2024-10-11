@@ -1,4 +1,5 @@
-<project name="HelloWorld" default="run">
+<project name="HelloWorld" default="build-and-run">
+
     <echo message="Welcome to HelloWorld project" />
 
     <target name="compile">
@@ -9,9 +10,14 @@
         <java classname="HelloWorld" fork="true" />
     </target>
 
+    <target name="build-and-run" depends="compile, run">
+        <echo message="Build and run completed." />
+    </target>
+
     <target name="clean">
         <delete dir="build"/>
     </target>
 
     <echo message="Goodbye from HelloWorld project" />
 </project>
+
